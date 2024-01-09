@@ -2,13 +2,13 @@ package cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.model.services;
 
 import cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.model.domain.Fruit;
 import cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.model.repository.FruitRepository;
+
 import jakarta.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class FruitServiceImpl implements FruitService{
@@ -16,14 +16,9 @@ public class FruitServiceImpl implements FruitService{
     private FruitRepository fruitRepository;
 
     @Override
-    public boolean addFruit(Fruit fruit) {
-        try{
-            fruitRepository.save(fruit);
-            return true;
-        }
-        catch (Exception ex){
-            return false;
-        }
+    public boolean addFruit(Fruit fruit){
+        fruitRepository.save(fruit);
+        return true;
     }
 
     @Override
@@ -39,12 +34,13 @@ public class FruitServiceImpl implements FruitService{
 
     @Override
     public boolean deleteFruit(long id) {
-        try{
+        Optional<Fruit> fruit = fruitRepository.findById(id);
+        if(fruit.isPresent()){
             fruitRepository.deleteById(id);
             return true;
         }
-        catch (Exception ex){
-            return false;
+        else{
+            throw new EntityNotFoundException();
         }
     }
 

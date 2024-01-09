@@ -2,10 +2,11 @@ package cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.controllers;
 
 import cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.model.domain.Fruit;
 import cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.model.services.FruitService;
+
 import jakarta.validation.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,6 @@ public class FruitController {
     @Autowired
     private FruitService fruitService;
 
-
     @PostMapping("/add")
     public ResponseEntity<String> createFruit(@Valid @RequestBody Fruit fruit){
         boolean created = fruitService.addFruit(fruit);
@@ -28,6 +28,7 @@ public class FruitController {
             return new ResponseEntity<>("Something went wrong with the database server", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateFruit(@PathVariable("id") long id, @Valid @RequestBody Fruit fruit){
         Fruit _fruit = fruitService.getOneFruit(id);
@@ -40,6 +41,7 @@ public class FruitController {
             return new ResponseEntity<>("Something went wrong with the database server", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteFruit(@PathVariable("id") long id){
         boolean deleted = fruitService.deleteFruit(id);
@@ -50,11 +52,11 @@ public class FruitController {
             return new ResponseEntity<>("Something went wrong with the database server", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @GetMapping("/getOne/{id}")
     public ResponseEntity<Fruit> getOne(@PathVariable("id") long id){
         Fruit fruit = fruitService.getOneFruit(id);
         return new ResponseEntity<>(fruit, HttpStatus.OK);
-
     }
 
     @GetMapping("/getAll")

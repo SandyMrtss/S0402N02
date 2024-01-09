@@ -1,11 +1,12 @@
 package cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
+import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.*;
 
 
 @ControllerAdvice
@@ -21,4 +22,8 @@ public class ExceptionHandlerAdvice {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No element found with id");
     }
 
+    @ExceptionHandler(SQLException.class)
+    public ResponseEntity<String> handlePrimaryKeyViolation(SQLException ex){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Element already exists");
+    }
 }
