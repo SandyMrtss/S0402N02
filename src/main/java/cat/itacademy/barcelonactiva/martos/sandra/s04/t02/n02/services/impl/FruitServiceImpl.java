@@ -1,8 +1,9 @@
-package cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.model.services;
+package cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.services.impl;
 
-import cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.model.domain.Fruit;
-import cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.model.repository.FruitRepository;
+import cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.domain.Fruit;
+import cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.repository.FruitRepository;
 
+import cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.services.FruitService;
 import jakarta.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class FruitServiceImpl implements FruitService{
+public class FruitServiceImpl implements FruitService {
     @Autowired
     private FruitRepository fruitRepository;
 

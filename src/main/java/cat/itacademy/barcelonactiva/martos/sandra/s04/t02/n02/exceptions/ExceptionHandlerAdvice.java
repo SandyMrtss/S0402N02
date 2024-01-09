@@ -1,4 +1,4 @@
-package cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.controllers;
+package cat.itacademy.barcelonactiva.martos.sandra.s04.t02.n02.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 
