@@ -54,11 +54,6 @@ public class FruitServiceImpl implements FruitService {
 
     @Override
     public List<Fruit> getAllFruit() {
-        try{
-            return fruitRepository.findAll();
-        }
-        catch (Exception ex){
-            return new ArrayList<>();
-        }
+        return fruitRepository.findAll();
     }
 }
