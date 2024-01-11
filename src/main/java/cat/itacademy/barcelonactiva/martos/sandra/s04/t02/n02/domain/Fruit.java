@@ -17,7 +17,7 @@ public class Fruit {
     @Column(nullable = false)
     @NotNull(message = "Amount cannot be null")
     @Min(message = "Can't have negative amount", value = 0)
-    private int amountKg;
+    private Integer amountKg;
 
     public Fruit(){
 
@@ -40,7 +40,7 @@ public class Fruit {
         this.name = name;
     }
 
-    public int getAmountKg() {
+    public Integer getAmountKg() {
         return amountKg;
     }
 

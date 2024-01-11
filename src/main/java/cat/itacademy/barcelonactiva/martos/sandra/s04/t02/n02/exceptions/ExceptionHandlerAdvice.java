@@ -8,8 +8,6 @@ import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.*;
-
 
 @ControllerAdvice
 public class ExceptionHandlerAdvice {
@@ -21,7 +19,7 @@ public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<String> handleNotFoundException(EntityNotFoundException ex){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No element found with id");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No element found with this id");
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
@@ -35,7 +33,7 @@ public class ExceptionHandlerAdvice {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> hadleGeneralException(Exception ex){
+    public ResponseEntity<String> handleGeneralException(Exception ex){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something unexpected went wrong\n" + ex.getMessage());
     }
 }
